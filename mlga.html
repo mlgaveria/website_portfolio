@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Marcus Averia</title>
+  <link rel="icon" type="image/x-icon" href="E:\Website Portfolio\mlga logo.ico">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+</head>
+
+<body>
+  <div id="vanta-bg">
+  <header>
+    <div><img src="mlga_logo-removebg-preview.png" style="width: 100px; height: 100px;"></div>
+  </header>
+
+  <section class="content">
+    <!-- ARTICLE -->
+    <article>
+      <div class="container">
+        <h1 style="color: white;">
+          Hello, I am <span style="color: rgb(7, 173, 21); ">Marcus Averia</span>
+        </h1>
+        <h4>Software Engineer</h4>
+        <ul class="details">
+          <li><a href="https://read.cv/mlgaveria" target="_blank">read.cv</a></li>
+          <li><a href="mailto:marcuslouisaveria@gmail.com" target="_blank">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/marcus-louis-averia-98271a17a/" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- NAV -->
+    <nav>
+      <div class="nav-container">
+        <h2>PROJECTS</h2>
+        <ul>
+          <li><a href="https://www.figma.com/proto/4ykDPyqlscQBdKJ6ng8yYC/Accudental_mlga?node-id=114-5&t=SDhQMEKSxFjkThwg-1" target="_blank"><img src="AccuDental.png" alt="Accudental" width="170"></a></li>
+          <li><a href="https://www.figma.com/proto/jCqTLjjly44upb5W08pEb6/GovMark-Screens?node-id=557-2062&starting-point-node-id=557%3A2062&t=zxXpqyQ3i47xkPQg-1" target="_blank"><img src="GOVMARK.png" alt="GovMark" width="130"></a></li>
+          <li><a href="https://drive.google.com/file/d/1q1cUGhpy_X8aM621GccZNd5CzpaajQwR/view?usp=sharing" target="_blank"><img src="YSDD LOGO.png" alt="IT Service Request Form" width="200"></a></li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      VANTA.TOPOLOGY({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.0,
+        scaleMobile: 1.0
+      });
+    });
+  </script>  
+  
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#vanta-bg {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;  
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+    
+header {
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 5% auto;
+      text-align: center;
+    }
+
+    .container h1 {
+      font-size: 50px;
+    }
+
+    .details {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 0;
+    }
+
+    .details li {
+      margin: 0;
+    }
+
+    .details a {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.details a:hover {
+  background-color: transparent; /* light background on hover */
+  filter: drop-shadow(0 0 8px white);         /* glowing effect */
+  transform: scale(1.05);                     /* slight zoom */
+}
+
+
+    /* Flex Layout */
+    .content {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      margin: 20px 60px;
+    }
+
+    article {
+      flex: 2;
+      padding: 20px;
+    }
+
+    nav {
+  flex: none; /* stops it from expanding */
+  width: 300px; /* make it narrower */
+  min-height: 300px; /* make it taller */
+  padding: 10px;
+  border-radius: 12px;
+  background-color: rgba(128, 128, 128, 0.562);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    nav li {
+      margin-bottom: 20px;
+    }
+
+    /* Image Hover Effect */
+    nav a img {
+      transition: all 0.3s ease;
+      border-radius: 12px;
+      background-color: transparent;
+    }
+
+    nav a:hover img {
+      filter: drop-shadow(0 0 10px white);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  nav {
+    order: 2;
+    width: 100%;
+    padding: 20px;
+  }
+
+  article {
+    order: 1;
+    width: 100%;
+    padding: 20px;
+  }
+}
+  </style>
+</div>
+</body>
+</html>

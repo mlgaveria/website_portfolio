@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YSDD | IT Service Request Forms</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <header>
+    <img src="Makati_City.png" width="100" height="80"> <img src="YSDD LOGO.png" width="160" height="80">
+    <h1>City Government of Makati</h1>
+    <h2>Youth and Sports Development Department</h2>
+    <h4>IT Service Request Forms</h4>
+    </header>
+</head><br><br>
+<body> 
+
+<!----------- NAVAGATION BOX ----------->
+<nav style="text-align: center">
+    <h1>Reference Number:</h1>
+    <h1><span id="reference-number" style="text-align:center; margin-top: 20px;"></span></h1>
+</nav>
+    
+    <!----------- REQUEST FORMS SELECTOR ----------->
+    <div class="request">
+    <div class="request-forms-container">
+    <h2>REQUEST FORMS:</h2>
+    <select onchange="showFields(this.value)">
+    <option disabled selected>Choose Type of Service:</option>
+    <option value="Repair">REQUEST FORM OF UNIT REPAIR</option>
+    <option value="Wifi">REQUEST FORM OF WIRELESS CONNECTION (WIFI)</option>
+    <option value="Transfer-Unit">TRANSFER OF UNIT REQUEST FORM</option>
+    <option value="Data">DATA REQUEST FORM</option>
+    </select>
+    </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="notifierModal" class="modal">
+      <div class="modal-content">
+      <p id="modal-message"></p>
+      <button class="close-btn" onclick="closeModal()">OK</button>
+    </div>
+    </div>
+
+<!----------- REQUEST FORMS BOX ----------->
+<article>
+  <br>
+  <div class="forms">
+  <div style="text-align:center" id="placeholder">Request Forms will be shown here</div>
+
+     <!------------- REPAIR FORM FIELD ------------>
+    <div id="Repair" class="form-field">
+    <div class="rcorners2">
+    <h4>SECTION</h4>
+    <div class="form-group" style="text-align:center">
+    <select class="section" name="section" required>
+    <option disabled selected>Choose Section:</option>
+    <option value="Administrative Section">ADMINISTRATIVE SECTION</option>
+    <option value="Finance and Logistic Management">FINANCE AND LOGISTIC MANAGEMENT SECTION</option>
+    <option value="Recreation and Facilities Management">RECREATION, PROGRAM AND FACILITIES MANAGEMENT SECTION</option>
+    </select>
+    </div>
+    </div>
+
+    <br>
+    <div class="rcorners2">
+    <h4>REQUESTER'S NAME</h4>
+    <div class="form-group">
+    <label for="last_name_repair_input">Last Name:</label>
+    <input type="text" id="last_name_repair_input" placeholder="Dela Cruz" required>
+    </div>
+    
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="first_name_repair_input">First Name:</label>
+    <input type="text" id="first_name_repair_input" placeholder="Juan" required>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="middle_initial_repair_input">Middle Initial:</label>
+    <input type="text" id="middle_initial_repair_input" placeholder="G." maxlength="3" required>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="email_repair_input">Email:</label>
+    <input type="text" id="email_repair_input" placeholder="juandelacruz@gmail.com" required>
+    </div>
+    </div>
+
+    <br>
+    <div class="rcorners2">
+    <h4>PURPOSE OF REQUEST</h4>
+    <div class="form-group">
+    <label for="type_of_work_input">Type of Work:</label>
+    <select id="type_of_work" name="type_of_work" required>
+    <option disabled selected>Type of Work:</option>
+    <option value="Complete Reset/Format">Complete Reset/Format</option>
+    <option value="Installation of Software/Application/Programs">Installation of Software/Application/Programs</option>
+    <option value="Diagnostic and Repair">Diagnostic and Repair</option>
+    <option value="Hardware Inspection">Hardware Inspection</option>
+    </select>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="unit_device">Unit/Device:</label>
+    <select class="unit_device" name="unit_device" onchange="populateUnitControlNumber('Repair')" required>
+    <option disabled selected>Units</option>
+    <option value="Dell Optiplex 9010">Dell Optiplex 9010 (Desktop)</option>
+    <option value="Lenovo Think Centere">Lenovo Think Centere (Desktop)</option>
+    <option value="Laptop">Laptop</option>
+    <option value="Printer">Printer</option>
+    </select>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="unit_control_number">Unit Control Number:</label>
+    <select class="unit_control_number" name="unit_control_number" required>
+    <!-- Options will be populated dynamically -->
+    </select>
+     
+    </div>
+    </div>
+    <div class ="button-container">
+    <button class="submitbutton" onclick="submitRepairForm()">Submit</button>
+    </div>
+    </div>
+
+    <!------------ WIFI FORM FIELD ------------->
+    <div id="Wifi" class="form-field">
+    <div class="rcorners2">
+    <h4>SECTION</h4>
+    <div class="form-group" style="text-align:center">
+    <select class="section" name="section" required>
+    <option disabled selected>Choose Section:</option>
+    <option value="Administrative Section">ADMINISTRATIVE SECTION</option>
+    <option value="Finance and Logistic Management">FINANCE AND LOGISTIC MANAGEMENT SECTION</option>
+    <option value="Recreation and Facilities Management">RECREATION, PROGRAM AND FACILITIES MANAGEMENT SECTION</option>
+    </select>
+    </div>
+    </div>
+
+    <br>
+    <div class="rcorners2">
+    <h4>REQUESTER'S NAME</h4>
+    <div class="form-group">
+    <label for="last_name_wifi_input">Last Name:</label>
+    <input type="text" id="last_name_wifi_input" placeholder="Dela Cruz" required>
+    </div>
+      
+    &nbsp;&nbsp;      
+    <div class="form-group">
+    <label for="first_name_wifi_input">First Name:</label>
+    <input type="text" id="first_name_wifi_input" placeholder="Juan" required>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="middle_initial_wifi_input">Middle Initial:</label>
+    <input type="text" id="middle_initial_wifi_input" placeholder="DP" maxlength="3" required>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="email_wifi_input">Email:</label>
+    <input type="text" id="email_wifi_input" placeholder="juandelacruz@gmail.com" required>
+    </div>
+    </div>
+
+    <br>
+    <div class="rcorners2">
+    <h4>PURPOSE OF REQUEST</h4>
+    <div class="form-group">
+    <label for="reason_input">Reason for Connection</label>
+    <input type="text" id="reason_input" required>
+    </div>
+
+     &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="unit_device">Unit/Device:</label>
+    <select class="unit_device" name="unit_device" onchange="populateUnitControlNumber('Wifi')" required>
+    <option disabled selected>Units</option>
+    <option value="Dell Optiplex 9010">Dell Optiplex 9010 (Desktop)</option>
+    <option value="Lenovo Think Centere">Lenovo Think Centere (Desktop)</option>
+    <option value="Laptop">Laptop</option>
+    <option value="Printer">Printer</option>
+    </select>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="unit_control_number">Unit Control Number:</label>
+    <select class="unit_control_number" name="unit_control_number" required>
+    <!-- Options will be populated dynamically -->
+    </select>
+    </div>
+    </div>
+    <div class ="button-container">
+    <button class="submitbutton" onclick="submitWifiForm()">Submit</button>
+    </div>
+    </div>
+
+    <!----------- TRANSFER UNIT -------------->
+    <div id="Transfer-Unit" class="form-field">
+    <div class="rcorners2">
+    <h4>SECTION</h4>
+    <div class="form-group" style="text-align:center">
+    <select class="section" name="section">
+    <option disabled selected>Choose Section:</option>
+    <option value="Administrative Section">ADMINISTRATIVE SECTION</option>
+    <option value="Finance and Logistic Management">FINANCE AND LOGISTIC MANAGEMENT SECTION</option>
+    <option value="Recreation and Facilities Management">RECREATION, PROGRAM AND FACILITIES MANAGEMENT SECTION</option>
+    </select>
+    </div>
+    </div>
+
+    <br>  
+    <div class="rcorners2">
+    <h4>REQUESTER'S NAME</h4>
+    <div class="form-group">
+    <label for="last_name_tf_input">Last Name:</label>
+    <input type="text" id="last_name_tf_input" placeholder="Dela Cruz" required>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="first_name_tf_input">First Name:</label>
+    <input type="text" id="first_name_tf_input" placeholder="Juan" required>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="middle_initial_tf_input">Middle Initial:</label>
+    <input type="text" id="middle_initial_tf_input" placeholder="DP" maxlength="3" required>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="email_tf_input">Email:</label>
+    <input type="text" id="email_tf_input" placeholder="juandelacruz@gmail.com" required>
+    </div>
+    </div>
+      
+    <br>
+    <div class="rcorners2">
+    <h4>PURPOSE OF REQUEST</h4>
+    <div class="form-group">
+    <label for="reason_input">Reason for Transfer</label>
+    <input type="text" id="reason_input" required>
+    </div>
+    </div>
+
+    <br>
+    <div class="rcorners2">
+    <h4>TRANSFER TO:</h4>
+    <div class="form-group">
+    <label for="transfered_name">Full Name:</label>
+    <input type="text" id="transfered_name" placeholder="e.g Juan Dela Cruz" required>
+    </div>
+     
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="transfer_department">Section</label>
+    <select id="transfer_department" name="transfer_department" required>
+    <option disabled selected>Choose Section:</option>
+    <option value="Administrative Section">ADMINISTRATIVE SECTION</option>
+    <option value="Finance and Logistic Management">FINANCE AND LOGISTIC MANAGEMENT SECTION</option>
+    <option value="Recreation and Facilities Management">RECREATION, PROGRAM AND FACILITIES MANAGEMENT SECTION</option>
+    </select>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="unit_device">Unit/Device:</label>
+    <select class="unit_device" name="unit_device" onchange="populateUnitControlNumber('Transfer-Unit')" required>
+    <option disabled selected>Units</option>
+    <option value="Dell Optiplex 9010">Dell Optiplex 9010 (Desktop)</option>
+    <option value="Lenovo Think Centere">Lenovo Think Centere (Desktop)</option>
+    <option value="Laptop">Laptop</option>
+    <option value="Printer">Printer</option>
+    </select>
+    </div>
+
+    <div class="form-group">
+    <label for="unit_control_number">Unit Control Number:</label>
+    <select class="unit_control_number" name="unit_control_number" required>
+    <!-- Options will be populated dynamically -->
+    </select>
+    </div>
+    </div>
+    <div class ="button-container">
+    <button class="submitbutton" onclick="submitTransferUnitForm()">Submit</button>
+    </div>
+    </div>
+
+    <!------------ DATA REQUEST ------------>
+    <div id="Data" class="form-field">
+    <div class="rcorners2">
+    <h4>SECTION</h4>
+    <div class="form-group" style="text-align:center">
+    <select class="section" name="section">
+    <option disabled selected>Choose Section:</option>
+    <option value="Administrative Section">ADMINISTRATIVE SECTION</option>
+    <option value="Finance and Logistic Management">FINANCE AND LOGISTIC MANAGEMENT SECTION</option>
+    <option value="Recreation and Facilities Management">RECREATION, PROGRAM AND FACILITIES MANAGEMENT SECTION</option>
+    </select>
+    </div>
+    </div>
+
+    <br>
+    <div class="rcorners2">
+    <h4>REQUESTER'S NAME</h4>
+    <div class="form-group">
+    <label for="last_name_data_input">Last Name:</label>
+    <input type="text" id="last_name_data_input" placeholder="Dela Cruz" required>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="first_name_data_input">First Name:</label>
+    <input type="text" id="first_name_data_input" placeholder="Juan" required>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="middle_initial_data_input">Middle Initial:</label>
+    <input type="text" id="middle_initial_data_input" placeholder="DP" maxlength="3">
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="email_data_input">Email:</label>
+    <input type="text" id="email_data_input" placeholder="juandelacruz@gmail.com" required>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="contact_number_input">Contact Number:</label>
+    <input type="tel" id="contact_number_input" name="contact_number_input" placeholder="09123456789" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
+    </div>
+    </div>
+
+    <br>
+    <div class="rcorners2">
+    <h4>DATA ENTRY</h4>
+    <div class="form-group">
+    <label for="data_input">Name of Subject Data:</label>
+    <input type="text" id="data_input" required>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="event_input">Project/Event:</label>
+    <input type="text" id="event_input" required>
+    </div>
+
+    &nbsp;&nbsp;
+    <div class="form-group">
+    <label for="year">Year of Project:</label>
+    <select id="year" name="year" required>
+    <option disabled selected>Select Year:</option>
+    <option value="2016">2016</option>
+    <option value="2017">2017</option>
+    <option value="2018">2018</option>
+    <option value="2019">2019</option>
+    <option value="2020">2020</option>
+    <option value="2021">2021</option>
+    <option value="2022">2022</option>
+    <option value="2023">2023</option>
+    <option value="2024">2024</option>
+    </select>
+    </div>
+    </div>
+    <div class ="button-container">
+    <button class="submitbutton" onclick="submitDataForm()">Submit</button>
+    </div>
+    </div>
+</article>
+</body>
+<footer class ="contact">
+  <div class="container">
+    <p>&copy; 2024 By mlgaveria.</p>
+  </div>
+</footer>
+<!----------- SCRIPTS  ----------->
+<script>
+function showFields(option) {
+    document.querySelectorAll('.form-field').forEach(function(field) {
+        field.style.display = 'none';
+    });
+
+    const selectedField = document.getElementById(option);
+    if (selectedField) {
+        selectedField.style.display = 'block';
+    } else {
+        console.error('Selected option field does not exist:', option);
+        return;
+    }
+
+    generateReferenceNumberAndDisplay(option);
+    document.getElementById('placeholder').style.display = 'none';
+}
+
+function generateReferenceNumberAndDisplay(option) {
+    const referenceNumber = `YSDD-IT-${option.substring(0, 3).toUpperCase()}-${Math.floor(10000 + Math.random() * 90000)}`;
+    document.getElementById('reference-number').innerText = referenceNumber;
+}
+
+function formatDate(date) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true };
+    return new Intl.DateTimeFormat('en-US', options).format(date);
+}
+
+function getCurrentTimestamp() {
+    return formatDate(new Date());
+}
+
+function validateFields(fields) {
+    for (let field of fields) {
+        if (!field.value.trim()) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function displayModal(message) {
+    const modal = document.getElementById('notifierModal');
+    const modalMessage = document.getElementById('modal-message');
+    modalMessage.innerText = message;
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    const modal = document.getElementById('notifierModal');
+    modal.style.display = 'none';
+}
+
+function populateUnitControlNumber(type) {
+    var unitDeviceSelect = document.querySelector("#" + type.replace('-', '\\-') + " .unit_device");
+    var unitControlNumberSelect = document.querySelector("#" + type.replace('-', '\\-') + " .unit_control_number");
+    var selectedUnitDevice = unitDeviceSelect.value;
+
+    // Clear existing options
+    unitControlNumberSelect.innerHTML = '';
+
+    // Populate options based on selected unit/device
+    if (selectedUnitDevice === "Dell Optiplex 9010") {
+        var options = ["7MTYD2S", "FJTYD2S", "CNTYD2S", "GNTYD2S", "1KTYD2S", "5JTYD2S", "2NTYD2S", "DNTYD2S", "9MTYD2S", "FKTYD2S", "6NTYD2S", "2JTYD2S", "9JTYD2S", "BJTYD2S", "DHTYD2S", "JHTYD2S", "4JTYD2S", "7LTYD2S", "9LTYD2S", "CKTYD2S", "BHTYD2S", "DKTYD2S", "6JTYD2S", "8MTYD2S"];
+    } else if (selectedUnitDevice === "Lenovo Think Centere") {
+        var options = ["SPC2FVEAH", "SPC2FVEAC", "SPC2FVEBE", "SPC2EK4LJ", "SPC2EK4L6", "SPC2FVEBL", "SPC2FVEB8", "SPC2FEA4", "SPC2FVEBP", "SPC2FVEA5", "SPC2FVEBC", "SPC2FVEB4"];
+    } else if (selectedUnitDevice === "Laptop") {
+        var options = ["SMP281KEE"];
+    } else if (selectedUnitDevice === "Printer") {
+        var options = ["X6N7007215", "SN-VGWK138810", "SN-VGNKD35995", "SN-VGWK138823", "SN-VGWK147997", "CN19QCC2WX"];
+    }
+
+    // Add options to the select element
+    options.forEach(function(option) {
+        var optionElement = document.createElement("option");
+        optionElement.text = option;
+        unitControlNumberSelect.add(optionElement);
+    });
+}
+
+function submitRepairForm() {
+    const fields = [
+        document.querySelector('#Repair .section'),
+        document.querySelector('#last_name_repair_input'),
+        document.querySelector('#first_name_repair_input'),
+        document.querySelector('#middle_initial_repair_input'),
+        document.querySelector('#email_repair_input'),
+        document.querySelector('#type_of_work'),
+        document.querySelector('#Repair .unit_device'),
+        document.querySelector('#Repair .unit_control_number')
+    ];
+
+    if (!validateFields(fields)) {
+        displayModal('Please complete the form');
+        return;
+    }
+
+    const section = fields[0].value;
+    const lastName = fields[1].value;
+    const firstName = fields[2].value;
+    const middleInitial = fields[3].value;
+    const email = fields[4].value;
+    const typeOfWork = fields[5].value;
+    const unitDevice = fields[6].value;
+    const unitControlNumber = fields[7].value;
+    const referenceNumber = document.getElementById('reference-number').innerText;
+    const timestamp = getCurrentTimestamp();
+
+    google.script.run
+        .withSuccessHandler(() => {
+            displayModal('Form submitted successfully!');
+            document.querySelector('#Repair').reset();
+        })
+        .withFailureHandler(() => {
+            displayModal('Form submission failed');
+        })
+        .submitRepairForm(section, lastName, firstName, middleInitial, email, typeOfWork, unitDevice, unitControlNumber, referenceNumber, timestamp);
+}
+
+function submitWifiForm() {
+    const fields = [
+        document.querySelector('#Wifi .section'),
+        document.querySelector('#last_name_wifi_input'),
+        document.querySelector('#first_name_wifi_input'),
+        document.querySelector('#middle_initial_wifi_input'),
+        document.querySelector('#email_wifi_input'),
+        document.querySelector('#reason_input'),
+        document.querySelector('#Wifi .unit_device'),
+        document.querySelector('#Wifi .unit_control_number')
+    ];
+
+    if (!validateFields(fields)) {
+        displayModal('Please complete the form');
+        return;
+    }
+
+    const section = fields[0].value;
+    const lastName = fields[1].value;
+    const firstName = fields[2].value;
+    const middleInitial = fields[3].value;
+    const email = fields[4].value;
+    const reason = fields[5].value;
+    const unitDevice = fields[6].value;
+    const unitControlNumber = fields[7].value;
+    const referenceNumber = document.getElementById('reference-number').innerText;
+    const timestamp = getCurrentTimestamp();
+
+    google.script.run
+        .withSuccessHandler(() => {
+            displayModal('Form submitted successfully!');
+            document.querySelector('#Wifi').reset();
+        })
+        .withFailureHandler(() => {
+            displayModal('Form submission failed');
+        })
+        .submitWifiForm(section, lastName, firstName, middleInitial, email, reason, unitDevice, unitControlNumber, referenceNumber, timestamp);
+}
+
+function submitTransferUnitForm() {
+  const fields = [
+    document.querySelector('#Transfer-Unit .section'),
+    document.querySelector('#last_name_tf_input'),
+    document.querySelector('#first_name_tf_input'),
+    document.querySelector('#middle_initial_tf_input'),
+    document.querySelector('#email_tf_input'),
+    document.querySelector('#reason_input'),
+    document.querySelector('#transfered_name'),
+    document.querySelector('#transfer_department'),
+    document.querySelector('#Transfer-Unit .unit_device'),
+    document.querySelector('#Transfer-Unit .unit_control_number')
+  ];
+
+  if (!validateFields(fields)) {
+    displayModal('Please complete the form');
+    return;
+  }
+
+  const section = fields[0].value;
+  const lastName = fields[1].value;
+  const firstName = fields[2].value;
+  const middleInitial = fields[3].value;
+  const email = fields[4].value;
+  const reason = fields[5].value;
+  const transferredName = fields[6].value;
+  const transferDepartment = fields[7].value;
+  const unitDevice = fields[8].value;
+  const unitControlNumber = fields[9].value;
+  const referenceNumber = document.getElementById('reference-number').innerText;
+  const timestamp = getCurrentTimestamp();
+
+  google.script.run
+    .withSuccessHandler(() => {
+      displayModal('Form submitted successfully!');
+      document.querySelector('#Transfer-Unit').reset();
+    })
+    .withFailureHandler(() => {
+      displayModal('Form submission failed');
+    })
+    .submitTransferUnitForm(section, lastName, firstName, middleInitial, email, reason, transferredName, transferDepartment, unitDevice, unitControlNumber, referenceNumber, timestamp);
+}
+
+function submitDataForm() {
+    const fields = [
+        document.querySelector('#Data .section'),
+        document.querySelector('#last_name_data_input'),
+        document.querySelector('#first_name_data_input'),
+        document.querySelector('#middle_initial_data_input'),
+        document.querySelector('#email_data_input'),
+        document.querySelector('#contact_number_input'),
+        document.querySelector('#data_input'),
+        document.querySelector('#event_input'),
+        document.querySelector('#year')
+    ];
+
+    if (!validateFields(fields)) {
+        displayModal('Please complete the form');
+        return;
+    }
+
+    const section = fields[0].value;
+    const lastName = fields[1].value;
+    const firstName = fields[2].value;
+    const middleInitial = fields[3].value;
+    const email = fields[4].value;
+    const contactNumber = fields[5].value;
+    const dataName = fields[6].value;
+    const projectEvent = fields[7].value;
+    const year = fields[8].value;
+    const referenceNumber = document.getElementById('reference-number').innerText;
+    const timestamp = getCurrentTimestamp();
+
+    google.script.run
+        .withSuccessHandler(() => {
+            displayModal('Form submitted successfully!');
+            document.querySelector('#Data').reset();
+        })
+        .withFailureHandler(() => {
+            displayModal('Form submission failed');
+        })
+        .submitDataForm(section, lastName, firstName, middleInitial, email, contactNumber, dataName, projectEvent, year, referenceNumber, timestamp);
+}
+</script>
+
+<!----------- STYLE  ----------->
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Montserrat;
+  float: none;
+  padding: 20px;
+  width: 100%;
+  height: auto;
+  background-image: #f1f1f1;
+}
+
+/* Style the header */
+header {
+  background-color: #3fa4e8;
+  padding: 30px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: right;
+  width: 30%;
+  height: 200px; /* only for demonstration, should be removed */
+  background-color: #093684;
+   border: 1px solid black;
+  padding: 20px;
+  color: white;
+  border-radius: 25px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+  background-color: #f1f1f1;
+  height: 300px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.contact {
+    padding: 50px 0;
+    color: #090A0E; /* Almost black */
+    background-color: #f8f8f8; /* Example background color */
+    text-align: center; /* Centers the text */
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+.rcorners2 {
+  border-radius: 25px;
+  border: 1px solid black;
+  padding: 20px; 
+  width: 200px auto;
+  height: 170px auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.rcorners2:hover {background-color: #e7e7e7;}
+
+.request {
+  border-radius: 25px;
+  border: 1px solid black;
+  padding: 20px; 
+  width: 69%;
+  height: 200px;
+  background-color: white;
+  float: left;
+}
+.request:hover {background-color: #e7e7e7;}
+
+.request-forms-container {
+  text-align: center;
+}
+
+/* Add this style to adjust spacing */
+.request-forms-container select {
+  margin-top: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.submitbutton {
+  border-radius: 25px;
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-flex;
+  place-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.submitbutton:hover {opacity: 1}
+
+.clearbutton {
+  border-radius: 25px;
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  }
+
+.clearbutton:hover {opacity: 1}
+
+input, select {
+  padding: 5px 12px;
+  font-family: Montserrat;
+  font-size: 14px;
+  line-height: 20px;
+  color: #24292e;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  outline: none;
+  box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+}
+
+input:focus, select:focus {
+  border-color: #0366d6;
+  outline: none;
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+  cursor: pointer;
+}
+
+
+.forms {
+  border-radius: 25px;
+  border: 1px solid black;
+  padding: 20px; 
+  height: auto;
+  background-color: white;
+  }
+
+.form-field {
+    margin-bottom: 20px; /* Adjust spacing between form fields */
+    display: none;
+    margin-bottom: 10px;
+    
+}
+  
+.form-field h4 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.form-field label {
+    display: inline-block;
+    width: 120px; /* Adjust width of labels */
+    text-align: right;
+    margin-right: 10px;
+}
+
+.form-field input,
+.form-field select {
+    width: 600px auto; /* Adjust width of input fields */
+}
+
+.form-field select[multiple] {
+    height: auto; /* Adjust height for multi-select */
+}
+
+.form-group {
+    text-align: center; /* Center align the contents of form-group */
+    margin: 10px; /* Provide some spacing around each form-group */
+}
+
+.form-group label {
+    display: block; /* Make labels take the full width */
+    margin-bottom: 5px; /* Space between label and input */
+}
+
+.form-group input, .form-group select {
+    width: 60%; /* Adjust according to your design needs */
+    padding: 8px; /* Padding for better text visibility in inputs */
+    margin: auto; /* Center-align elements */
+    display: block; /* Allow width to take effect by making element a block */
+}
+
+.modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .close-btn {
+      color: white;
+      background-color: #007BFF;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+</style>
+</html>
